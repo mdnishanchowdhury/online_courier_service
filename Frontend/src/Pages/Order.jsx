@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { FiPackage, FiRefreshCw } from "react-icons/fi";
 
 const Order = () => {
-  const [rowSelection, setRowSelection] = useState([]);
 
   const parcels = [
     { id: 1, from: "New York", to: "Los Angeles", sender: "John", recipient: "Alice", note: "Fragile" },
@@ -13,8 +13,13 @@ const Order = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 p-4 bg-white rounded-lg">
+        {/* Header with animation */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 p-4 bg-white rounded-lg shadow-sm"
+        >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-indigo-100">
               <FiPackage className="text-xl text-indigo-600" />
@@ -31,9 +36,9 @@ const Order = () => {
             <FiRefreshCw />
             Refresh
           </button>
-        </div>
+        </motion.div>
 
-        {/* Table */}
+        {/* Table with animated rows */}
         <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-200">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -46,14 +51,20 @@ const Order = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {parcels.map((parcel) => (
-                <tr key={parcel.id} className="hover:bg-gray-50 cursor-pointer">
+              {parcels.map((parcel, index) => (
+                <motion.tr
+                  key={parcel.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className="hover:bg-gray-50 cursor-pointer"
+                >
                   <td className="px-6 py-4 text-gray-600">{parcel.from}</td>
                   <td className="px-6 py-4 text-gray-600">{parcel.to}</td>
                   <td className="px-6 py-4 text-gray-600">{parcel.sender}</td>
                   <td className="px-6 py-4 text-gray-600">{parcel.recipient}</td>
                   <td className="px-6 py-4 text-gray-600 truncate" title={parcel.note}>{parcel.note}</td>
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
           </table>

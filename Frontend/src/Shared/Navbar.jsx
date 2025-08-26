@@ -13,8 +13,8 @@ const Navbar = () => {
         { to: "", label: "Home" },
         { to: "/blog", label: "Blogs" },
         { to: "/services", label: "Services" },
-         { to: "/contacts", label: "Contact" },
-         { to: "/about", label: "About" },
+        { to: "/contacts", label: "Contact" },
+        { to: "/about", label: "About" },
         { to: "/reports", label: "Reports" },
         { to: "/Order", label: "Orders" },
         { to: "/dashboard", label: "Dashboard" },
@@ -23,9 +23,9 @@ const Navbar = () => {
     return (
         <nav className="bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg">
             <div className=" px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-{/* max-w-7xl mx-auto */}
-                <Link to="/" className="text-2xl font-bold text-gray-900 uppercase">
-                    Courier
+                {/* max-w-7xl mx-auto */}
+                <Link to="/" className="text-2xl font-bold text-gray-900 ">
+                    CourierX
                 </Link>
                 {/* destop menu */}
                 <DesktopMenu
